@@ -3,4 +3,4 @@
 ## Module: "Collecting and Storing Data"
  - The [webservice](https://github.com/anotherlab/xf5fundamentals/tree/main/DailyForecast/webservice) folder contains the completed code for the webservice part of the demo
 - The [sqlite](https://github.com/anotherlab/xf5fundamentals/tree/main/DailyForecast/sqlite) folder contains the completed code for the SQLite part of the demo
- - The [litedb]() folder contains the completed code for the LiteDB part of the demo
+ - The [litedb](https://github.com/anotherlab/xf5fundamentals/tree/main/DailyForecast/litedb) folder contains the completed code for the LiteDB part of the demo
