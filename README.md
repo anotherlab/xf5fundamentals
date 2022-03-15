@@ -4,6 +4,10 @@ Each module will have its own folder, with different demos located in sub folder
 ## Module 2
 The demo for "Getting Ready" can be found in the ["MyFirstApp"](https://github.com/anotherlab/xf5fundamentals/tree/main/Getting%20Ready/MyFirstApp) folder
 
+## Module 3
+The demo for "Application Structures" can be found in the ["MyFirstApp"](https://github.com/anotherlab/xf5fundamentals/tree/main/applicationstructures) folder
+This folder contains the before and after versions of the demo from this module
+
 ## Module 6
 The demos for "Collecting and Storing Data" can be found in the [DailyForecast](https://github.com/anotherlab/xf5fundamentals/tree/main/Collecting%20and%20Storing%20Data/DailyForecast) folder.
  - The [webservice](https://github.com/anotherlab/xf5fundamentals/tree/main/Collecting%20and%20Storing%20Data/DailyForecast/webservice) folder contains the completed code for the webservice part of the demo
