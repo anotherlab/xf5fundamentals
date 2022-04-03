@@ -5,11 +5,11 @@
              Title="Navigation Demo">
 
     <StackLayout BackgroundColor="{StaticResource Canvas}">
-        <Frame BackgroundColor="Cornsilk" Padding="24" CornerRadius="0">
+        <Frame BackgroundColor="{StaticResource Banner}" Padding="24" CornerRadius="0">
             <Label Text="Navigation Demo" HorizontalTextAlignment="Center" TextColor="Black" FontSize="36"/>
         </Frame>
-        <Button Text="FlexLayout" Clicked="PushFlex"/>
-        <Button Text="FlexLayout (No Animation)" Clicked="PushFlexNoAnimation"/>
+        <Button Text="Push Navigation" Clicked="PushPage"/>
+        <Button Text="Push Navigation (No Animation)" Clicked="PushPageNoAnimation"/>
         <Button Text="Modal" Clicked="ModalButton"/>
     </StackLayout>
 

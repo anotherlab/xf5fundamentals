@@ -11,26 +11,26 @@ namespace NavDemo
 {
     public partial class MainPage : ContentPage
     {
-        FramePage page;
+        LoginPage page;
         public MainPage()
         {
             InitializeComponent();
         }
 
-        public async void PushFlex(object sender, EventArgs e)
+        public async void PushPage(object sender, EventArgs e)
         {
-            var flexPage = new FlexPage();
+            var flexPage = new MyNewPage { Level = 1 };
             await Navigation.PushAsync(flexPage);
         }
-        public async void PushFlexNoAnimation(object sender, EventArgs e)
+        public async void PushPageNoAnimation(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new FlexPage(), false);
+            await Navigation.PushAsync(new MyNewPage { Level = 1 }, false);
         }
 
         public async void ModalButton(object sender, EventArgs e)
         {
             App.Current.ModalPopping += Current_ModalPopping;
-            page = new FramePage();
+            page = new LoginPage();
             await Navigation.PushModalAsync(page);
         }
 
@@ -42,8 +42,9 @@ namespace NavDemo
 
                 if (page.loginSuccess)
                     App.Current.ModalPopping -= Current_ModalPopping;
+                else
+                    page.DisplayErrorMessage = "Login failed";
             }
         }
-
     }
 }

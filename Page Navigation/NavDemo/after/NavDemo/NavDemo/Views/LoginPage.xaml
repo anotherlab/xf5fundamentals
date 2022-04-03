@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NavDemo.Views.LoginPage">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{StaticResource Canvas}">
+            <Label Text="Login"
+                   FontSize="50"
+                   FontAttributes="Bold"
+                   HorizontalOptions="CenterAndExpand" />
+
+            <StackLayout Margin="20">
+                <Label Text="User"/>
+                <Entry x:Name="User"/>
+                <Label Text="Password"/>
+                <Entry/>
+            </StackLayout>
+
+            <Button Text="Login" 
+                    Margin="20" 
+                    Clicked="LoginClicked"/>
+            
+            <Label x:Name="StatusMessage" 
+                   Margin="20" 
+                   TextColor="{StaticResource ErrorText}" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
