@@ -7,11 +7,10 @@
     -->
     <Application.Resources>
         <ResourceDictionary>
-        <Color x:Key="Primary">#C43B03</Color>
-        <Color x:Key="Canvas">#F69C7E</Color>
-        <Color x:Key="Secondary">#F15B2A</Color>
-        <Color x:Key="Banner">#D17B06</Color>
-        <Color x:Key="ErrorText">Red</Color>
+            <Color x:Key="Primary">#C43B03</Color>
+            <Color x:Key="Canvas">#F69C7E</Color>
+            <Color x:Key="Secondary">#F15B2A</Color>
+            <Color x:Key="ItemBackground">#ffddd1</Color>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">
