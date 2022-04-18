@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\materialdesignicons-webfont.ttf" />
+    <None Remove="Images\thum000.jpg" />
+    <None Remove="Images\thum001.jpg" />
+    <None Remove="Images\thum002.jpg" />
+    <None Remove="Images\thum003.jpg" />
+    <None Remove="Images\thum004.jpg" />
+    <None Remove="Images\thum005.jpg" />
+    <None Remove="Images\thum006.jpg" />
+    <None Remove="Images\thum007.jpg" />
+    <None Remove="Images\thum008.jpg" />
+    <None Remove="Images\thum009.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\materialdesignicons-webfont.ttf" />
+    <EmbeddedResource Include="Images\thum000.jpg" />
+    <EmbeddedResource Include="Images\thum001.jpg" />
+    <EmbeddedResource Include="Images\thum002.jpg" />
+    <EmbeddedResource Include="Images\thum003.jpg" />
+    <EmbeddedResource Include="Images\thum004.jpg" />
+    <EmbeddedResource Include="Images\thum005.jpg" />
+    <EmbeddedResource Include="Images\thum006.jpg" />
+    <EmbeddedResource Include="Images\thum007.jpg" />
+    <EmbeddedResource Include="Images\thum008.jpg" />
+    <EmbeddedResource Include="Images\thum009.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\CarouselViewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\CollectionViewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ListViewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>
