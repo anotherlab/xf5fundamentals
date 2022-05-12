@@ -1,5 +1,4 @@
-﻿using BindingDemo.ViewModels;
-using BindingDemo.Views;
+﻿using BindingDemo.Views;
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
