@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:BindingDemo.Views"
+       xmlns:icons="clr-namespace:BindingDemo.Images"
+       Title="BindingDemo"
+       x:Class="BindingDemo.AppShell">
+
+    <!--
+        The overall app visual hierarchy is defined here, along with navigation.
+    
+        https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
+    -->
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <TabBar>
+        <ShellContent Title="InPage" 
+                      ContentTemplate="{DataTemplate local:InPageBindingPage}" >
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="MaterialDesignIcons"
+                                 Glyph="{x:Static icons:MaterialDesignIconFont.Xml}"/>
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent Title="InPage" 
+                      ContentTemplate="{DataTemplate local:CodeBehindBindingPage}" >
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="MaterialDesignIcons"
+                                 Glyph="{x:Static icons:MaterialDesignIconFont.LanguageCsharp}"/>
+            </ShellContent.Icon>
+        </ShellContent>
+    </TabBar>
+
+</Shell>
