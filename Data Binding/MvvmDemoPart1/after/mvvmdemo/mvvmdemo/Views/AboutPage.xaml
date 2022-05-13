@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="mvvmdemo.Views.AboutPage"
+             xmlns:vm="clr-namespace:mvvmdemo.ViewModels"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             Title="{Binding Title}">
+    
+    <ContentPage.BindingContext>
+        <vm:AboutViewModel />
+    </ContentPage.BindingContext>
+    
+    <StackLayout Margin="10,0,10,0">
+        <Label Text="Name" 
+               Style="{StaticResource Legend}"/>
+        <Label Text="{Binding DeviceName}" 
+               Style="{StaticResource Info}"/>
+        
+        <Label Text="Platform" 
+               Style="{StaticResource Legend}"/>
+        <Label Text="{Binding Platform}" 
+               Style="{StaticResource Info}"/>
+        
+        <Label Text="Version" 
+               Style="{StaticResource Legend}"/>
+        <Label Text="{Binding Version}" 
+               Style="{StaticResource Info}"/>
+        
+        <Label Text="Device Type" 
+               Style="{StaticResource Legend}"/>
+        <Label Text="{Binding DeviceType}" 
+               Style="{StaticResource Info}"/>
+    </StackLayout>
+
+</ContentPage>
