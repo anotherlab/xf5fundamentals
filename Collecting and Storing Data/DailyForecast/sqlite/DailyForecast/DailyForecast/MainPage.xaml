@@ -5,32 +5,57 @@
 
     <Grid>
         <StackLayout>
-            <Frame BackgroundColor="#F15B2A" Padding="24" CornerRadius="0">
-                <Label Text="5 Day Average" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+            <Frame BackgroundColor="{StaticResource Primary}" 
+                   Padding="24" 
+                   CornerRadius="0">
+                <Label Text="5 Day Average" 
+                       HorizontalTextAlignment="Center" 
+                       TextColor="White" 
+                       FontSize="36"/>
             </Frame>
-            <Label Text="Location" TextColor="#C43BOE"/>
-            <Entry Placeholder="Enter a city, state, country" Text="{Binding Address}"/>
-            <CollectionView ItemsSource="{Binding DailyRanges}" Header="{Binding .}" Margin="5" EmptyView="No items to display">
+            <Label Text="Location" 
+                   TextColor="{StaticResource Secondary}"/>
+            <Entry Placeholder="Enter a city, state, country" 
+                   Text="{Binding Address}"/>
+            <CollectionView ItemsSource="{Binding DailyRanges}" 
+                            Header="{Binding .}" 
+                            Margin="5" 
+                            EmptyView="No items to display">
                 <CollectionView.HeaderTemplate>
                     <DataTemplate>
-                        <Grid BackgroundColor="#C43BOE">
-                            <Label Grid.Column="0" Text="Date" TextColor="White"/>
-                            <Label Grid.Column="1" Text="Low Temp" HorizontalOptions="End" TextColor="White"/>
-                            <Label Grid.Column="2" Text="High Temp" HorizontalOptions="End" TextColor="White"/>
+                        <Grid BackgroundColor="{StaticResource Secondary}">
+                            <Label Grid.Column="0"
+                                   Text="Date" 
+                                   TextColor="White"/>
+                            <Label Grid.Column="1" 
+                                   Text="Low Temp" 
+                                   HorizontalOptions="End" 
+                                   TextColor="White"/>
+                            <Label Grid.Column="2" 
+                                   Text="High Temp" 
+                                   HorizontalOptions="End" 
+                                   TextColor="White"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.HeaderTemplate>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
-                            <Label Grid.Column="0" Text="{Binding ForecastDate, StringFormat='{0:d}'}"/>
-                            <Label Grid.Column="1" Text="{Binding LowTemp, StringFormat='{0:F1}°'}" HorizontalOptions="End"/>
-                            <Label Grid.Column="2" Text="{Binding HighTemp, StringFormat='{0:F1}°'}" HorizontalOptions="End"/>
+                            <Label Grid.Column="0" 
+                                    Text="{Binding ForecastDate, StringFormat='{0:d}'}"/>
+                            <Label Grid.Column="1" 
+                                    Text="{Binding LowTemp, StringFormat='{0:F1}°'}" 
+                                    HorizontalOptions="End"/>
+                            <Label Grid.Column="2" 
+                                    Text="{Binding HighTemp, StringFormat='{0:F1}°'}" 
+                                    HorizontalOptions="End"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <Button Text="Refresh" Command="{Binding RefreshCommand}" BackgroundColor="#F69C7E"></Button>
+            <Button Text="Refresh" 
+                    Command="{Binding RefreshCommand}" 
+                    BackgroundColor="{StaticResource Primary}"/>
         </StackLayout>
         <ActivityIndicator 
             IsRunning="{Binding IsBusy}" 

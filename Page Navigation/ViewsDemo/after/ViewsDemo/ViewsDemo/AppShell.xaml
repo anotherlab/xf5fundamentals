@@ -45,12 +45,13 @@
                                  Glyph="{x:Static icons:MaterialDesignIconFont.ViewCarouselOutline}"/>
             </ShellContent.Icon>
         </ShellContent>
-        <ShellContent Title="CollectionView" 
+        <ShellContent Title="CollectionView"
+                      Icon="{FontImage {x:Static icons:MaterialDesignIconFont.FormatListText}, FontFamily=MaterialDesignIcons}"
                       ContentTemplate="{DataTemplate local:CollectionViewPage}" >
-            <ShellContent.Icon>
+            <!--<ShellContent.Icon>
                 <FontImageSource FontFamily="MaterialDesignIcons"
                                  Glyph="{x:Static icons:MaterialDesignIconFont.FormatListText}"/>
-            </ShellContent.Icon>
+            </ShellContent.Icon>-->
         </ShellContent>
     </TabBar>
 </Shell>

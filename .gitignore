@@ -193,6 +193,7 @@ UpgradeLog*.htm
 FakesAssemblies/
 
 **/.vscode
+*.code-workspace
 
 # Pluralsight
 APIKeysLocal.cs
