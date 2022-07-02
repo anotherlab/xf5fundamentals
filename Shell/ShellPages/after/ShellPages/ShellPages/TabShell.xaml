@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:ShellPages.Views"
+       xmlns:icons="clr-namespace:ShellPages.Images"
+       Title="ShellPages1"
+             x:Class="ShellPages.TabShell">
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
+
+            <!--
+            Default Styles for all Flyout Items
+            https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/flyout#flyoutitem-and-menuitem-style-classes
+            -->
+            <Style Class="FlyoutItemLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White"></Setter>
+            </Style>
+            <Style Class="FlyoutItemLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{x:OnPlatform UWP=Transparent, iOS=White}" />
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+
+            <!--
+            Custom Style you can apply to any Flyout Item
+            -->
+            <Style Class="MenuItemLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
+    <TabBar>
+        <Tab Title="Bottom One">
+            <Tab.Icon>
+                <FontImageSource FontFamily="MaterialDesignIcons"
+                                 Glyph="{x:Static icons:MaterialDesignIconFont.Numeric1BoxOutline}"/>
+            </Tab.Icon>
+            <ShellContent Title="Not used" Route="BottomOne" ContentTemplate="{DataTemplate local:NumberPage}" />
+        </Tab>
+        <Tab Title="Bottom Two">
+            <Tab.Icon>
+                <FontImageSource FontFamily="MaterialDesignIcons"
+                                 Glyph="{x:Static icons:MaterialDesignIconFont.Numeric2BoxOutline}"/>
+            </Tab.Icon>
+            <ShellContent Route="BottomTwo" ContentTemplate="{DataTemplate local:NumberPage}" />
+        </Tab>
+        <Tab Title="Top Tabs">
+            <Tab.Icon>
+                <FontImageSource FontFamily="MaterialDesignIcons"
+                                 Glyph="{x:Static icons:MaterialDesignIconFont.ArrowUpBoldBoxOutline}"/>
+            </Tab.Icon>
+            <ShellContent Title="One" Route="BottomOneTop" ContentTemplate="{DataTemplate local:NumberPage}" />
+            <ShellContent Title="Two" Route="BottomTwoTop" ContentTemplate="{DataTemplate local:NumberPage}" />
+        </Tab>
+        <Tab Title="Flyout">
+            <Tab.Icon>
+                <FontImageSource FontFamily="MaterialDesignIcons"
+                                 Glyph="{x:Static icons:MaterialDesignIconFont.Backburger}"/>
+            </Tab.Icon>
+            <ShellContent Title="Not used" Route="BottomOne" ContentTemplate="{DataTemplate local:ShellSwitchPage}">
+            </ShellContent>
+        </Tab>
+    </TabBar>
+</Shell>
