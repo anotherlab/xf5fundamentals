@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:ViewsDemo.ViewModels"
+             xmlns:helpers="clr-namespace:ViewsDemo.Helpers"
+             x:Class="ViewsDemo.Views.ListViewPage"
+             Title="ListView Demo">
+    <ContentPage.Resources>
+        <helpers:ImageResourceConverter x:Key="imageResourceCvt" />
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <viewmodels:LeadersViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding Leaders}">
+                <ListView.Header >
+                    <StackLayout Padding="10,5,5,10">
+                        <Label Text="Our Leaders"
+                               TextColor="{StaticResource Primary}"
+                               HorizontalOptions="Center"
+                               FontSize="40"/>
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ImageCell Text="{Binding Name}" 
+                                   TextColor="{StaticResource Primary}"
+                                   Detail="{Binding JobTitle}" 
+                                   ImageSource="{Binding ImageUrl, 
+                                                 Converter={StaticResource imageResourceCvt}}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
