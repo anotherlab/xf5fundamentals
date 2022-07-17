@@ -25,9 +25,6 @@ namespace ViewsDemo.iOS
         {
             global::Xamarin.Forms.Forms.Init();
 
-            // register a new user notification center delegate to process the notifications
-            UNUserNotificationCenter.Current.Delegate = new iOSNotificationReceiver();
-
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
