@@ -5,7 +5,6 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using Xamarin.Forms;
-using ViewsDemo.Interfaces;
 using Android.Content;
 
 namespace ViewsDemo.Droid
