@@ -72,29 +72,6 @@ namespace ViewsDemo.Droid
             Show(title, message, id);
         }
 
-        public void Show(string title, string message, string id)
-        {
-            Intent intent = new Intent(AndroidApp.Context, typeof(MainActivity));
-            intent.PutExtra(TitleKey, title);
-            intent.PutExtra(MessageKey, message);
-            intent.PutExtra(IdKey, id);
-
-            PendingIntent pendingIntent = PendingIntent.GetActivity(AndroidApp.Context, pendingIntentId++, intent, PendingIntentFlags.UpdateCurrent);
-
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(AndroidApp.Context, channelId)
-                .SetContentIntent(pendingIntent)
-                .SetContentTitle(title)
-                .SetContentText(message)
-                .SetLargeIcon(BitmapFactory.DecodeResource(AndroidApp.Context.Resources, Resource.Drawable.xflogo))
-                .SetSmallIcon(Resource.Drawable.xflogo)
-                .SetDefaults((int)NotificationDefaults.Sound | (int)NotificationDefaults.Vibrate)
-                .SetAutoCancel(true);
-
-            Notification notification = builder.Build();
-
-            manager.Notify(messageId++, notification);
-        }
-
         void CreateNotificationChannel()
         {
             manager = (NotificationManager)AndroidApp.Context.GetSystemService(AndroidApp.NotificationService);
@@ -111,5 +88,28 @@ namespace ViewsDemo.Droid
 
             channelInitialized = true;
         }
+        public void Show(string title, string message, string id)
+        {
+            var intent = new Intent(AndroidApp.Context, typeof(MainActivity));
+            intent.PutExtra(TitleKey, title);
+            intent.PutExtra(MessageKey, message);
+            intent.PutExtra(IdKey, id);
+
+            var pendingIntent = PendingIntent.GetActivity(AndroidApp.Context, pendingIntentId++, intent, PendingIntentFlags.UpdateCurrent);
+
+            var builder = new NotificationCompat.Builder(AndroidApp.Context, channelId)
+                .SetContentIntent(pendingIntent)
+                .SetContentTitle(title)
+                .SetContentText(message)
+                .SetLargeIcon(BitmapFactory.DecodeResource(AndroidApp.Context.Resources, Resource.Drawable.xflogo))
+                .SetSmallIcon(Resource.Drawable.xflogo)
+                .SetDefaults((int)NotificationDefaults.Sound | (int)NotificationDefaults.Vibrate)
+                .SetAutoCancel(true);
+
+            var notification = builder.Build();
+
+            manager.Notify(messageId++, notification);
+        }
+
     }
 }

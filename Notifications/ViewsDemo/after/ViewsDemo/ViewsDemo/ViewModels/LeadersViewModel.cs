@@ -63,8 +63,6 @@ namespace ViewsDemo.ViewModels
             if (leader == null)
                 return;
 
-            // replace with messagingcenter
-
             await Task.Run(() => (Application.Current as App).SendNotification("Leader Notified", leader.Name, leader.Id));
         });
 

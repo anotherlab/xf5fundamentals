@@ -18,7 +18,7 @@ namespace ViewsDemo.iOS
         public void Initialize()
         {
             // request the permission to use local notifications
-            UNUserNotificationCenter.Current.RequestAuthorization(UNAuthorizationOptions.Alert, (approved, err) =>
+            UNUserNotificationCenter.Current.RequestAuthorization(UNAuthorizationOptions.Alert | UNAuthorizationOptions.Sound, (approved, err) =>
             {
                 hasNotificationsPermission = approved;
             });
@@ -43,10 +43,9 @@ namespace ViewsDemo.iOS
                 Badge = 1
             };
 
-            UNNotificationTrigger trigger;
 
             // Create a time-based trigger, interval is in seconds and must be greater than 0.
-            trigger = UNTimeIntervalNotificationTrigger.CreateTrigger(0.25, false);
+            var trigger = UNTimeIntervalNotificationTrigger.CreateTrigger(0.25, false);
 
             var request = UNNotificationRequest.FromIdentifier(messageId.ToString(), content, trigger);
 
@@ -67,6 +66,7 @@ namespace ViewsDemo.iOS
                 Message = message,
                 Id = id
             };
+            
             NotificationReceived?.Invoke(null, args);
         }
     }

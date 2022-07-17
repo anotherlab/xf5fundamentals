@@ -15,6 +15,7 @@ namespace ViewsDemo
         LeadersDataStore leadersDataStore = null;
         public LeadersDataStore LeadersDataStore => leadersDataStore ?? (leadersDataStore = new LeadersDataStore());
 
+        // demo 1
         INotificationManager notificationManager;
 
         public App()
@@ -28,7 +29,6 @@ namespace ViewsDemo
             notificationManager.NotificationReceived += (sender, eventArgs) =>
             {
                 var e = (NotificationEventArgs)eventArgs;
-                //ShowNotification(evtData.Title, evtData.Message, evtData.Id);
 
                 Device.BeginInvokeOnMainThread(async () =>
                 {
@@ -53,14 +53,6 @@ namespace ViewsDemo
         public void SendNotification(string title, string message, string id)
         {
             notificationManager.SendNotification(title, message, id);
-        }
-
-        void ShowNotification(string title, string message, string id)
-        {
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                await App.Current.MainPage.DisplayAlert("Alert", $"Notification Received:\nTitle: {title}\nMessage: {message}\nID: {id}", "Ok");
-            });
         }
 
         protected override void OnStart() { }

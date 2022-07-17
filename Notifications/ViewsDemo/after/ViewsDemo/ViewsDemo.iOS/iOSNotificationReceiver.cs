@@ -8,6 +8,16 @@ namespace ViewsDemo.iOS
 {
     public class iOSNotificationReceiver : UNUserNotificationCenterDelegate
     {
+        // When an iOS app is running in the background, this method will be called to the deliver the notification to the app
+        public override void DidReceiveNotificationResponse(UNUserNotificationCenter center, UNNotificationResponse response, Action completionHandler)
+        {
+            // Our code to process the notification
+            ProcessNotification(response.Notification);
+
+            // Let the OS dispose of the notification
+            completionHandler();
+        }
+
         // When an iOS apap is running in the foreground, this method will be called to the deliver the notification to the app
         public override void WillPresentNotification(UNUserNotificationCenter center, UNNotification notification, Action<UNNotificationPresentationOptions> completionHandler)
         {
@@ -15,7 +25,10 @@ namespace ViewsDemo.iOS
             ProcessNotification(notification);
 
             // Specify how to present the notification to the user
-            completionHandler(UNNotificationPresentationOptions.Banner | UNNotificationPresentationOptions.List);
+            // Since we are diosplaying an alert message, we don't need to display a notification
+            completionHandler(UNNotificationPresentationOptions.None);
+            // if you do want to display a notification, then use this line
+            //completionHandler(UNNotificationPresentationOptions.Banner | UNNotificationPresentationOptions.List);
         }
 
         void ProcessNotification(UNNotification notification)
@@ -32,31 +45,5 @@ namespace ViewsDemo.iOS
             DependencyService.Get<INotificationManager>()?.ReceiveNotification(title, message, id);
         }
 
-        void ProcessNotificationOld(UNNotification notification)
-        {
-            // Defined fields in UNNotificationContent that get mapped to string fields
-            string title = notification.Request.Content.Title;
-            string message = notification.Request.Content.Body;
-
-            // The custom field comes over in a NSDictionary object 
-            string id = "";
-
-            // define the key name as NSString
-            var idkey = new NSString("id");
-
-            var foo = (notification.Request.Content.UserInfo.ObjectForKey(new NSString("id"))?.ToString() ?? "");
-            var bar = (notification.Request.Content.UserInfo.ObjectForKey(new NSString("id1"))?.ToString() ?? "");
-
-
-            // Check to see if the key exists in the dictionary
-            if (notification.Request.Content.UserInfo.ContainsKey(idkey))
-            {
-                // if the key exists, get the value for the key and convert it to string
-                id = notification.Request.Content.UserInfo.ValueForKey(idkey).ToString();
-            }
-
-            // Get a reference to the INotificationManager implementation and notify the shared code
-            DependencyService.Get<INotificationManager>()?.ReceiveNotification(title, message, id);
-        }
     }
 }

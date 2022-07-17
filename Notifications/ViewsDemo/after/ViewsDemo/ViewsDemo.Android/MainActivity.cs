@@ -11,7 +11,7 @@ using Android.Content;
 namespace ViewsDemo.Droid
 {
     [Activity(Label = "ViewsDemo", LaunchMode = LaunchMode.SingleTop, 
-        Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
+        Icon = "@mipmap/launcher", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -29,10 +29,6 @@ namespace ViewsDemo.Droid
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-        protected override void OnNewIntent(Intent intent)
-        {
-            CreateNotificationFromIntent(intent);
-        }
 
         void CreateNotificationFromIntent(Intent intent)
         {
@@ -43,6 +39,11 @@ namespace ViewsDemo.Droid
                 string id = intent.GetStringExtra(AndroidNotificationManager.IdKey);
                 DependencyService.Get<INotificationManager>().ReceiveNotification(title, message, id);
             }
+        }
+
+        protected override void OnNewIntent(Intent intent)
+        {
+            CreateNotificationFromIntent(intent);
         }
     }
 }
