@@ -7,13 +7,13 @@
     -->
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#1F778D</Color>
-            <Color x:Key="Canvas">#76CBE0</Color>
-            <Color x:Key="Secondary">#2A9FBC</Color>
-            <Color x:Key="ItemBackground">#cff5ff</Color>
+            <Color x:Key="Primary">#3b8e1f</Color>
+            <Color x:Key="Canvas">#76e076</Color>
+            <Color x:Key="Secondary">#2abb2a</Color>
+            <Color x:Key="ItemBackground">#d1ffd1</Color>
             <Style x:Key="CircleBorder" TargetType="Ellipse">
-                <Setter Property="Stroke" Value="#1F778D"></Setter>
-                <Setter Property="Fill" Value="#cff5ff"></Setter>
+                <Setter Property="Stroke" Value="#3b8e1f"></Setter>
+                <Setter Property="Fill" Value="#d1ffd1"></Setter>
             </Style>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>

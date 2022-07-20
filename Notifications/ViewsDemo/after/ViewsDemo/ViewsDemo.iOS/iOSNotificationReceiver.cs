@@ -24,9 +24,9 @@ namespace ViewsDemo.iOS
             // Our code to process the notification
             ProcessNotification(notification);
 
-            // Specify how to present the notification to the user
             // Since we are diosplaying an alert message, we don't need to display a notification
             completionHandler(UNNotificationPresentationOptions.None);
+            
             // if you do want to display a notification, then use this line
             //completionHandler(UNNotificationPresentationOptions.Banner | UNNotificationPresentationOptions.List);
         }

@@ -45,7 +45,7 @@ namespace ViewsDemo.iOS
 
 
             // Create a time-based trigger, interval is in seconds and must be greater than 0.
-            var trigger = UNTimeIntervalNotificationTrigger.CreateTrigger(0.25, false);
+            var trigger = UNTimeIntervalNotificationTrigger.CreateTrigger(5.25, false);
 
             var request = UNNotificationRequest.FromIdentifier(messageId.ToString(), content, trigger);
 
@@ -66,7 +66,7 @@ namespace ViewsDemo.iOS
                 Message = message,
                 Id = id
             };
-            
+
             NotificationReceived?.Invoke(null, args);
         }
     }

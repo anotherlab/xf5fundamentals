@@ -73,7 +73,6 @@ namespace ViewsDemo.ViewModels
                 return;
 
             MessagingCenter.Send<LeadersViewModel, string>(this, MessageConsts.RequestMeeting, leader.Id);
-
             //MessagingCenter.Send(this, MessageConsts.RequestMeeting, leader.Id);
         });
 
