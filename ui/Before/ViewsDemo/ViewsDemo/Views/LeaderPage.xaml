@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:ViewsDemo.Helpers"
+             xmlns:viewmodels="clr-namespace:ViewsDemo.ViewModels"
+             Title="{Binding Name}"
+             x:Class="ViewsDemo.Views.LeaderPage">
+    <ContentPage.Resources>
+        <helpers:ImageResourceConverter x:Key="imageResourceCvt" />
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid x:DataType="viewmodels:LeaderViewModel"
+              ColumnDefinitions="*,300,*"
+              RowDefinitions="*,300,*">
+            <Grid RowDefinitions="*,auto,*" Grid.Column="1">
+                <Frame Grid.Row="1" 
+                   BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryPartial}, Dark={StaticResource PrimaryDarkPartial}}" 
+                   BorderColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" 
+                   CornerRadius="5">
+                    <Label Text="{Binding JobTitle}" 
+                       FontSize="Large"
+                       TextColor="{AppThemeBinding Light={StaticResource DefaultText}, Dark={StaticResource DefaultTextDark}}"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+                </Frame>
+            </Grid>
+            <Ellipse Grid.Column="1" Grid.Row="1"
+                     Style="{StaticResource CircleBorder}"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     WidthRequest="300"
+                     HeightRequest="300"
+                     StrokeThickness="2"/>
+            <Image Grid.Column="1" Grid.Row="1"
+                    HeightRequest="280"
+                    WidthRequest="280"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Source="{Binding ImageUrl, Converter={StaticResource imageResourceCvt}}">
+                <Image.Clip>
+                    <EllipseGeometry Center="140,140"
+                                     RadiusX="140"
+                                     RadiusY="140"/>
+                </Image.Clip>
+            </Image>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

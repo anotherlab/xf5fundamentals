@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:ViewsDemo.Helpers"
+             xmlns:icons="clr-namespace:ViewsDemo.Images"
+             xmlns:viewmodels="clr-namespace:ViewsDemo.ViewModels"
+             x:Class="ViewsDemo.Views.SettingsPage"
+             Title="Settings">
+    <ContentPage.Resources>
+        <helpers:ThemeConverter x:Key="themeCvt" />
+        <ResourceDictionary>
+            <ControlTemplate x:Key="ThemeRadioTemplate">
+                <Frame
+                    Padding="0"
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource CanvasDark},
+                                                      Light={StaticResource Canvas}}"
+                    BorderColor="{AppThemeBinding Dark={StaticResource SecondaryDark},
+                                                  Light={StaticResource Secondary}}"
+                    HasShadow="False"
+                    HeightRequest="80"
+                    WidthRequest="80"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start"
+                    CornerRadius="5">
+                    <Grid Margin="4" WidthRequest="80">
+                        <ContentPresenter />
+                        <Grid
+                            HeightRequest="20"
+                            WidthRequest="20"
+                            HorizontalOptions="End"
+                            VerticalOptions="Start">
+                            <Ellipse
+                                Fill="White"
+                                HeightRequest="18"
+                                HorizontalOptions="Center"
+                                Stroke="#2E2545"
+                                StrokeThickness="1"
+                                VerticalOptions="Center"
+                                WidthRequest="18" />
+                            <Ellipse
+                                x:Name="Check"
+                                BackgroundColor="Transparent"
+                                Fill="#ff0000"
+                                HeightRequest="10"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                WidthRequest="10" />
+                        </Grid>
+                    </Grid>
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroupList>
+                            <VisualStateGroup x:Name="CheckedStates">
+                                <VisualState x:Name="Checked">
+                                    <VisualState.Setters>
+                                        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource DefaultText}, Dark={StaticResource DefaultTextDark}}" />
+                                        <Setter TargetName="Check" Property="Opacity" Value="1" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Unchecked">
+                                    <VisualState.Setters>
+                                        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                                        <Setter TargetName="Check" Property="Opacity" Value="0" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </VisualStateManager.VisualStateGroups>
+                </Frame>
+            </ControlTemplate>
+
+            <Style TargetType="StackLayout" x:Key="rbcStackLayout">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+            <Style TargetType="RadioButton" x:Key="rb">
+                <Setter Property="ControlTemplate" Value="{StaticResource ThemeRadioTemplate}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout x:DataType="viewmodels:ThemeViewModel"
+                         RadioButtonGroup.GroupName="theme"
+                         RadioButtonGroup.SelectedValue="{Binding CurrentTheme, Converter={StaticResource themeCvt}}">
+                <Label Text="Theme" FontSize="Large"/>
+                <RadioButton Value="0" Style="{StaticResource rb}">
+                    <RadioButton.Triggers>
+                        <DataTrigger TargetType="RadioButton"
+                                     Binding="{Binding CurrentTheme}"
+                                     Value="{x:Static OSAppTheme.Unspecified}">
+                            <Setter Property="IsChecked" Value="True" />
+                        </DataTrigger>
+                    </RadioButton.Triggers>
+                    <RadioButton.Content>
+                        <StackLayout Style="{StaticResource rbcStackLayout}">
+                            <Image>
+                                <Image.Source>
+                                    <FontImageSource FontFamily="MaterialDesignIcons"
+                                                         Glyph="{x:Static icons:MaterialDesignIconFont.ThemeLightDark}"
+                                                         Color="{AppThemeBinding Light={StaticResource DefaultText}, Dark={StaticResource DefaultTextDark}}"/>
+                                </Image.Source>
+                            </Image>
+                            <Label FontSize="Small" Text="Default"/>
+                        </StackLayout>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton Value="1" Style="{StaticResource rb}">
+                    <RadioButton.Triggers>
+                        <DataTrigger Binding="{Binding CurrentTheme}"
+                                     TargetType="RadioButton"
+                                     Value="{x:Static OSAppTheme.Light}">
+                            <Setter Property="IsChecked" Value="True" />
+                        </DataTrigger>
+                    </RadioButton.Triggers>
+                    <RadioButton.Content>
+                        <StackLayout Style="{StaticResource rbcStackLayout}">
+                            <Image>
+                                <Image.Source>
+                                    <FontImageSource FontFamily="MaterialDesignIcons"
+                                                         Glyph="{x:Static icons:MaterialDesignIconFont.WhiteBalanceSunny}"
+                                                         Color="{AppThemeBinding Light={StaticResource DefaultText}, Dark={StaticResource DefaultTextDark}}"/>
+                                </Image.Source>
+                            </Image>
+                            <Label FontSize="Small" Text="Light"/>
+                        </StackLayout>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton Value="2" Style="{StaticResource rb}">
+                    <RadioButton.Triggers>
+                        <DataTrigger Binding="{Binding CurrentTheme}"
+                                     TargetType="RadioButton"
+                                     Value="{x:Static OSAppTheme.Dark}">
+                            <Setter Property="IsChecked" Value="True" />
+                        </DataTrigger>
+                    </RadioButton.Triggers>
+                    <RadioButton.Content>
+                        <StackLayout Style="{StaticResource rbcStackLayout}">
+                            <Image>
+                                <Image.Source>
+                                    <FontImageSource FontFamily="MaterialDesignIcons"
+                                                         Glyph="{x:Static icons:MaterialDesignIconFont.WeatherNight}"
+                                                         Color="{AppThemeBinding Light={StaticResource DefaultText}, Dark={StaticResource DefaultTextDark}}"/>
+                                </Image.Source>
+                            </Image>
+                            <Label FontSize="Small" Text="Dark"/>
+                        </StackLayout>
+                    </RadioButton.Content>
+                </RadioButton>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

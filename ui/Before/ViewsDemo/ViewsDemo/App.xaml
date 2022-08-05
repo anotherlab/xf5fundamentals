@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ViewsDemo.App">
+    <!--
+        Define global resources and styles here, that apply to all pages in your app.
+    -->
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#3b8e1f</Color>
+            <Color x:Key="PrimaryPartial">#3b8e1fc1</Color>
+            <Color x:Key="Canvas">#76e076</Color>
+            <Color x:Key="Secondary">#2abb2a</Color>
+            <Color x:Key="ItemBackground">#d1ffd1</Color>
+            <Color x:Key="DefaultText">#000000</Color>
+            <Color x:Key="PrimaryText">#006600</Color>
+            <Color x:Key="DetailText">#3b8e1f</Color>
+            <Color x:Key="SearchText">#006600</Color>
+            <Color x:Key="SearchPlaceholderText">#00b300</Color>
+            <Color x:Key="SearchBackground">#d1ffd1</Color>
+            <Color x:Key="DeleteBackground">#ffcccc</Color>
+            <Color x:Key="DeleteText">#4d0000</Color>
+            <Color x:Key="RequestBackground">#99ccff</Color>
+            <Color x:Key="RequestText">#001a33</Color>
+
+
+            <Color x:Key="PrimaryDark">#1a3f0e</Color>
+            <Color x:Key="PrimaryDarkPartial">#1a3f0eC1</Color>
+            <Color x:Key="CanvasDark">#1c7d1c</Color>
+            <Color x:Key="SecondaryDark">#2abb2a</Color>
+            <Color x:Key="ItemBackgroundDark">#006600</Color>
+            <Color x:Key="DefaultTextDark">#ffffff</Color>
+            <Color x:Key="PrimaryTextDark">#66ff66</Color>
+            <Color x:Key="DetailTextDark">#33cc33</Color>
+            <Color x:Key="SearchTextDark">#d1ffd1</Color>
+            <Color x:Key="SearchPlaceholderTextDark">#e6ffe6</Color>
+            <Color x:Key="SearchBackgroundDark">#006600</Color>
+            <Color x:Key="DeleteBackgroundDark">#ff6666</Color>
+            <Color x:Key="DeleteTextDark">#ffffff</Color>
+            <Color x:Key="RequestBackgroundDark">#004080</Color>
+            <Color x:Key="RequestTextDark">#ffffff</Color>
+
+            <Style TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource ItemBackground}, Dark={StaticResource ItemBackgroundDark}}" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DefaultText}, Dark={StaticResource DefaultTextDark}}" />
+            </Style>
+            <Style TargetType="RadioButton">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DefaultText}, Dark={StaticResource DefaultTextDark}}" />
+            </Style>
+
+            <Style x:Key="CircleBorder" TargetType="Ellipse">
+                <Setter Property="Stroke" Value="#3b8e1f"></Setter>
+                <Setter Property="Fill" Value="#d1ffd1"></Setter>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="White"></Setter>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="TextColor" Value="#999999"></Setter>
+                                    <Setter Property="BackgroundColor" Value="#332196F3" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </ResourceDictionary>        
+    </Application.Resources>
+</Application>

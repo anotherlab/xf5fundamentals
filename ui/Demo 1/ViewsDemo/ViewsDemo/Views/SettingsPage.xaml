@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:ViewsDemo.Helpers"
+             xmlns:icons="clr-namespace:ViewsDemo.Images"
+             xmlns:viewmodels="clr-namespace:ViewsDemo.ViewModels"
+             x:Class="ViewsDemo.Views.SettingsPage"
+             Title="Settings">
+    <ContentPage.Resources>
+        <helpers:ThemeConverter x:Key="themeCvt" />
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout x:DataType="viewmodels:ThemeViewModel"
+                         RadioButtonGroup.GroupName="theme"
+                         RadioButtonGroup.SelectedValue="{Binding CurrentTheme, Converter={StaticResource themeCvt}}">
+                <Label Text="Theme" FontSize="Large"/>
+                <RadioButton Content="System" Value="0">
+                    <RadioButton.Triggers>
+                        <DataTrigger TargetType="RadioButton"
+                                     Binding="{Binding CurrentTheme}"
+                                     Value="{x:Static OSAppTheme.Unspecified}">
+                            <Setter Property="IsChecked" Value="True" />
+                        </DataTrigger>
+                    </RadioButton.Triggers>
+                </RadioButton>
+                <RadioButton Content="Light" Value="1">
+                    <RadioButton.Triggers>
+                        <DataTrigger Binding="{Binding CurrentTheme}"
+                                     TargetType="RadioButton"
+                                     Value="{x:Static OSAppTheme.Light}">
+                            <Setter Property="IsChecked" Value="True" />
+                        </DataTrigger>
+                    </RadioButton.Triggers>
+                </RadioButton>
+                <RadioButton Content="Dark" Value="2">
+                    <RadioButton.Triggers>
+                        <DataTrigger Binding="{Binding CurrentTheme}"
+                                     TargetType="RadioButton"
+                                     Value="{x:Static OSAppTheme.Dark}">
+                            <Setter Property="IsChecked" Value="True" />
+                        </DataTrigger>
+                    </RadioButton.Triggers>
+                </RadioButton>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
