@@ -61,6 +61,6 @@
             IsVisible="{Binding IsBusy}"
             VerticalOptions="Center" 
             HorizontalOptions="Center"
-            Color="#F15B2A"/>
+            Color="{StaticResource Primary}"/>
     </Grid>
 </ContentPage>

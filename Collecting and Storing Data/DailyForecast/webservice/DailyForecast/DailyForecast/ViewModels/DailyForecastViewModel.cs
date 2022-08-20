@@ -27,10 +27,18 @@ namespace DailyForecast.ViewModels
                 return _ForecastData;
             }
         }
+
         public string ApiKey
         {
             get { return ForecastData.ApiKey; }
             set { ForecastData.ApiKey = value; }
+        }
+
+        string _Address;
+        public string Address
+        {
+            get { return _Address; }
+            set { SetProperty(ref _Address, value); }
         }
 
         bool _IsMetric;
@@ -47,14 +55,9 @@ namespace DailyForecast.ViewModels
             }
         }
 
-        string _Address;
-        public string Address
-        {
-            get { return _Address; }
-            set { SetProperty(ref _Address, value); }
-        }
-
         public ObservableCollection<DailyRange> DailyRanges { get; set; }
+
+        public Command RefreshCommand { get; set; }
 
         List<DisplayedTemperature> ReshapeData(owmList[] list)
         {
@@ -95,8 +98,6 @@ namespace DailyForecast.ViewModels
             DailyRanges.Clear();
             DailyRangeList.ForEach(x => DailyRanges.Add(x));
         }
-
-        public Command RefreshCommand { get; set; }
 
         private bool CanExecuteRefresh()
         {

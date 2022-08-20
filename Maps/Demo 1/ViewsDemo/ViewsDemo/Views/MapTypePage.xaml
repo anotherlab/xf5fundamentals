@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xct:Popup xmlns="http://xamarin.com/schemas/2014/forms"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
+           xmlns:icons="clr-namespace:ViewsDemo.Images"
+           xmlns:viewmodels="clr-namespace:ViewsDemo.ViewModels"
+           Size="300,300"
+           BackgroundColor="Transparent"
+           Color="Transparent"
+           x:Class="ViewsDemo.Views.MapTypePage">
+
+    <Frame x:DataType="viewmodels:MapViewModel"
+           CornerRadius="20">
+        <Grid ColumnDefinitions="*, 160, *" 
+              RowDefinitions="*, *, *">
+            <Button Grid.Row="0" 
+                    Grid.Column="1"
+                    Text="Street" 
+                    Command="{Binding StreetCommand}" 
+                    ContentLayout="Top, 0" 
+                    TextColor="{AppThemeBinding Light={StaticResource DefaultText}, Dark={StaticResource DefaultTextDark}}">
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialDesignIcons"
+                                    Glyph="{x:Static icons:MaterialDesignIconFont.RoadVariant}"
+                                    Size="40"
+                                    Color="{AppThemeBinding Light={StaticResource DefaultText}, Dark={StaticResource DefaultTextDark}}"/>
+                </Button.ImageSource>
+            </Button>
+            <Button Grid.Row="1" 
+                    Grid.Column="1"
+                    Text="Satellite" 
+                    Command="{Binding SatelliteCommand}" 
+                    ContentLayout="Top, 0" 
+                    TextColor="{AppThemeBinding Light={StaticResource DefaultText}, Dark={StaticResource DefaultTextDark}}">
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialDesignIcons"
+                                     Glyph="{x:Static icons:MaterialDesignIconFont.SatelliteVariant}"
+                                     Size="40"
+                                     Color="{AppThemeBinding Light={StaticResource DefaultText}, Dark={StaticResource DefaultTextDark}}"/>
+                </Button.ImageSource>
+            </Button>
+            <Button Grid.Row="2" 
+                    Grid.Column="1"
+                    Text="Hybrid" 
+                    Command="{Binding HybridCommand}" 
+                    ContentLayout="Top, 0" 
+                    TextColor="{AppThemeBinding Light={StaticResource DefaultText}, Dark={StaticResource DefaultTextDark}}">
+                <Button.ImageSource>
+                    <FontImageSource FontFamily="MaterialDesignIcons"
+                                     Glyph="{x:Static icons:MaterialDesignIconFont.MapCheck}"
+                                     Size="40"
+                                     Color="{AppThemeBinding Light={StaticResource DefaultText}, Dark={StaticResource DefaultTextDark}}"/>
+                </Button.ImageSource>
+            </Button>
+        </Grid>
+    </Frame>
+</xct:Popup>
