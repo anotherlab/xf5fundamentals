@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ViewsDemo.AppShell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:ViewsDemo.Helpers"
+    xmlns:icons="clr-namespace:ViewsDemo.Images"
+    xmlns:local="clr-namespace:ViewsDemo.Views"
+    Title="ViewsDemo">
+
+    <!--
+        The overall app visual hierarchy is defined here, along with navigation.
+        
+        https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
+    -->
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="White" />
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarTitleColor" Value="White" />
+            </Style>
+            <Style BasedOn="{StaticResource BaseStyle}" TargetType="TabBar" />
+            <Style BasedOn="{StaticResource BaseStyle}" TargetType="FlyoutItem" />
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <TabBar>
+        <ShellContent Title="CollectionView" ContentTemplate="{DataTemplate local:CollectionViewPage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="MaterialDesignIcons" Glyph="{x:Static icons:MaterialDesignIconFont.FormatListText}" />
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent Title="Map" ContentTemplate="{DataTemplate local:MapPage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="MaterialDesignIcons" Glyph="{x:Static icons:MaterialDesignIconFont.Map}" />
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent Title="Geo" ContentTemplate="{DataTemplate local:GeoCodingPage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="MaterialDesignIcons" Glyph="{x:Static icons:MaterialDesignIconFont.SearchWeb}" />
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent Title="Settings" ContentTemplate="{DataTemplate local:SettingsPage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="MaterialDesignIcons" Glyph="{x:Static icons:MaterialDesignIconFont.Cogs}" />
+            </ShellContent.Icon>
+        </ShellContent>
+    </TabBar>
+</Shell>

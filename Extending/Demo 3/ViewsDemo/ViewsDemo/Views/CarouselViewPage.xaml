@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:ViewsDemo.ViewModels"
+             xmlns:helpers="clr-namespace:ViewsDemo.Helpers"
+             x:Class="ViewsDemo.Views.CarouselViewPage"
+             Title="CarouselView Demo">
+    <ContentPage.Resources>
+        <helpers:ImageResourceConverter x:Key="imageResourceCvt" />
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <viewmodels:LeadersViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{StaticResource Canvas}">
+            <Label Text="Our Leaders"
+                   HorizontalOptions="Center"
+                   TextColor="{StaticResource Primary}"
+                   FontSize="40"/>
+            <CarouselView ItemsSource="{Binding Leaders}"
+                          IndicatorView="indicatorView">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame BorderColor="{StaticResource Primary}"
+                                   CornerRadius="20"
+                                   Margin="20"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="CenterAndExpand">
+                                <StackLayout>
+                                    <Label Text="{Binding JobTitle}"
+                                           FontSize="Large"
+                                           Margin="0,0,0,10"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"/>
+                                    <Image HeightRequest="256" 
+                                           WidthRequest="256"
+                                           Source="{Binding ImageUrl, Converter={StaticResource imageResourceCvt}}"/>
+                                    <Label Text="{Binding Name}"
+                                           FontSize="Large"
+                                           FontAttributes="Italic"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"/>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <IndicatorView x:Name="indicatorView"
+                           IndicatorColor="{StaticResource Secondary}"
+                           SelectedIndicatorColor="{StaticResource Primary}"
+                           HorizontalOptions="Center"
+                           Margin="0,0,0,20"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

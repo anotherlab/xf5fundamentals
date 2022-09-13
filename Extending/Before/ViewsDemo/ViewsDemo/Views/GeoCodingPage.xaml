@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ViewsDemo.Views.GeoCodingPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+    xmlns:resources="clr-namespace:ViewsDemo.Resources"
+    xmlns:viewmodels="clr-namespace:ViewsDemo.ViewModels"
+    Title="{Static resources:AppResources.Geocoding}">
+    <ContentPage.Content>
+        <Grid
+            x:DataType="viewmodels:MapViewModel"
+            ColumnDefinitions="10,*,*,*,10"
+            RowDefinitions="10, 40, *, 40, 30">
+            <maps:Map
+                x:Name="map"
+                Grid.RowSpan="5"
+                Grid.ColumnSpan="5" />
+            <SearchBar
+                x:Name="searchBar"
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="5"
+                BackgroundColor="{AppThemeBinding Light={StaticResource SearchBackground},
+                                                  Dark={StaticResource SearchBackgroundDark}}"
+                Placeholder="{Static resources:AppResources.AddressSearch}"
+                PlaceholderColor="{AppThemeBinding Light={StaticResource SearchPlaceholderText},
+                                                   Dark={StaticResource SearchPlaceholderTextDark}}"
+                SearchCommand="{Binding SearchCommand}"
+                SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"
+                TextColor="{AppThemeBinding Light={StaticResource SearchText},
+                                            Dark={StaticResource SearchTextDark}}" />
+            <Button
+                Grid.Row="3"
+                Grid.Column="1"
+                Clicked="Button_Clicked"
+                Text="{Static resources:AppResources.MapType}" />
+            <Button
+                Grid.Row="3"
+                Grid.Column="2"
+                Command="{Binding HereCommand}"
+                Text="{Static resources:AppResources.Here}" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

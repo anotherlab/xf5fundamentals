@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:viewmodels="clr-namespace:ViewsDemo.ViewModels"
+             Title="Geocoding"
+             x:Class="ViewsDemo.Views.GeoCodingPage">
+    <ContentPage.Content>
+        <Grid x:DataType="viewmodels:MapViewModel" 
+              ColumnDefinitions="10,*,*,*,10" 
+              RowDefinitions="10, 40, *, 40, 30">
+            <maps:Map x:Name="map" 
+                      Grid.ColumnSpan="5" 
+                      Grid.RowSpan="5"/>
+            <SearchBar x:Name="searchBar"
+                       Grid.Row="1"
+                       Grid.Column="0" 
+                       Grid.ColumnSpan="5" 
+                       Placeholder="Search items..."
+                       BackgroundColor="{AppThemeBinding Light={StaticResource SearchBackground}, Dark={StaticResource SearchBackgroundDark}}"
+                       TextColor="{AppThemeBinding Light={StaticResource SearchText}, Dark={StaticResource SearchTextDark}}"
+                       PlaceholderColor="{AppThemeBinding Light={StaticResource SearchPlaceholderText}, Dark={StaticResource SearchPlaceholderTextDark}}"
+                       SearchCommand="{Binding SearchCommand}"
+                       SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"
+                       />
+            <Button Grid.Row="3" 
+                    Grid.Column="1" 
+                    Text="Map Type" 
+                    Clicked="Button_Clicked"/>
+            <Button Grid.Row="3" 
+                    Grid.Column="2" 
+                    Text="Here"
+                    Command="{Binding HereCommand}"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

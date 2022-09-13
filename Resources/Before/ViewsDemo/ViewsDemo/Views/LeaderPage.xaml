@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:ViewsDemo.Helpers"
+             xmlns:viewmodels="clr-namespace:ViewsDemo.ViewModels"
+             Title="{Binding Name}"
+             x:Class="ViewsDemo.Views.LeaderPage">
+    <ContentPage.Resources>
+        <helpers:ImageResourceConverter x:Key="imageResourceCvt" />
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid x:DataType="viewmodels:LeaderViewModel"
+              ColumnDefinitions="*,300,*"
+              RowDefinitions="*,300,*">
+            <Grid.Background>
+                <RadialGradientBrush Center="0.5, 0.5"
+                                     Radius="0.5">
+                    <GradientStop Color="{AppThemeBinding Light={StaticResource ItemBackground}, 
+                                                          Dark={StaticResource DetailTextDark}}" 
+                                  Offset="0.1"/>
+                    <GradientStop Color="{AppThemeBinding Light={StaticResource Primary}, 
+                                                          Dark={StaticResource PrimaryDark}}" 
+                                  Offset="1.0"/>
+                </RadialGradientBrush>
+                <!--<LinearGradientBrush StartPoint="0,0.6 " EndPoint="1,1">
+                    <GradientStop Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" 
+                                  Offset="0.1"/>
+                    <GradientStop Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" 
+                                  Offset="0.8"/>
+                    <GradientStop Color="Gold" 
+                                  Offset="0.82"/>
+                    <GradientStop Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" 
+                                  Offset="0.84"/>
+                    <GradientStop Color="Gold" 
+                                  Offset="0.86"/>
+                    <GradientStop Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" 
+                                  Offset="0.88"/>
+                </LinearGradientBrush>-->
+            </Grid.Background>
+            <Grid RowDefinitions="*, Auto, *"
+                  Grid.Column="1">
+                <Frame Grid.Row="1"
+                       BackgroundColor="{AppThemeBinding Light={StaticResource PrimaryPartial}, 
+                                                         Dark={StaticResource PrimaryDarkPartial}}" 
+                       BorderColor="{AppThemeBinding Light={StaticResource Primary},
+                                                    Dark={StaticResource PrimaryDark}}" 
+                       CornerRadius="5">
+                    <Label Text="{Binding JobTitle}"
+                           FontSize="Large"
+                           Margin="0,10,0,10"
+                           HorizontalTextAlignment="Center"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+                </Frame>
+            </Grid>
+            <Ellipse Grid.Column="1" Grid.Row="1"
+                     Style="{StaticResource CircleBorder}"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     WidthRequest="300"
+                     HeightRequest="300"
+                     StrokeThickness="2"/>
+            <Image Grid.Column="1" Grid.Row="1"
+                    HeightRequest="280"
+                    WidthRequest="280"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Source="{Binding ImageUrl, Converter={StaticResource imageResourceCvt}}">
+                <Image.Clip>
+                    <EllipseGeometry Center="140,140"
+                                     RadiusX="140"
+                                     RadiusY="140"/>
+                </Image.Clip>
+            </Image>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

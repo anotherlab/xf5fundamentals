@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ViewsDemo.Views.CollectionViewPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:ViewsDemo.Helpers"
+    xmlns:icons="clr-namespace:ViewsDemo.Images"
+    xmlns:resources="clr-namespace:ViewsDemo.Resources"
+    xmlns:services="clr-namespace:ViewsDemo.Services"
+    xmlns:viewmodels="clr-namespace:ViewsDemo.ViewModels"
+    Title="{Static resources:AppResources.Leaders}">
+    <Shell.SearchHandler>
+        <services:LeaderSearchHandler
+            BackgroundColor="{AppThemeBinding Light={StaticResource SearchBackground},
+                                              Dark={StaticResource SearchBackgroundDark}}"
+            DisplayMemberName="Name"
+            Placeholder="{Static resources:AppResources.LeaderSearchPlaceholder}"
+            PlaceholderColor="{AppThemeBinding Light={StaticResource SearchPlaceholderText},
+                                               Dark={StaticResource SearchPlaceholderTextDark}}"
+            ShowsResults="True"
+            TextColor="{AppThemeBinding Light={StaticResource SearchText},
+                                        Dark={StaticResource SearchTextDark}}">
+            <services:LeaderSearchHandler.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="0.15*,0.85*">
+                        <Image
+                            HeightRequest="40"
+                            Source="{Binding ImageUrl, Converter={StaticResource imageResourceCvt}}"
+                            WidthRequest="40" />
+                        <Label
+                            Grid.Column="1"
+                            Text="{Binding Name}"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </DataTemplate>
+            </services:LeaderSearchHandler.ItemTemplate>
+        </services:LeaderSearchHandler>
+    </Shell.SearchHandler>
+    <ContentPage.Resources>
+        <helpers:ImageResourceConverter x:Key="imageResourceCvt" />
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <viewmodels:LeadersViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{AppThemeBinding Light={StaticResource Canvas}, Dark={StaticResource CanvasDark}}">
+            <Frame
+                Margin="10,8,10,2"
+                Padding="0"
+                BackgroundColor="{AppThemeBinding Light={StaticResource ItemBackground},
+                                                  Dark={StaticResource ItemBackgroundDark}}"
+                CornerRadius="5">
+                <Label
+                    FontSize="Title"
+                    HorizontalOptions="Center"
+                    Text="{Static resources:AppResources.OurLeaders}"
+                    TextColor="{AppThemeBinding Light={StaticResource DetailText},
+                                                Dark={StaticResource DetailTextDark}}" />
+            </Frame>
+            <RefreshView
+                Command="{Binding RefreshCommand}"
+                IsRefreshing="{Binding IsRefreshing}"
+                RefreshColor="{StaticResource Secondary}">
+
+                <CollectionView
+                    x:Name="collectionView"
+                    Margin="5"
+                    ItemsSource="{Binding Leaders}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems>
+                                        <SwipeItem
+                                            BackgroundColor="{AppThemeBinding Light={StaticResource DeleteBackground},
+                                                                              Dark={StaticResource DeleteBackgroundDark}}"
+                                            Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.DeleteCommand}"
+                                            CommandParameter="{Binding}"
+                                            Text="{Static resources:AppResources.Delete}">
+                                            <SwipeItem.IconImageSource>
+                                                <FontImageSource
+                                                    FontFamily="MaterialDesignIcons"
+                                                    Glyph="{x:Static icons:MaterialDesignIconFont.AccountMinusOutline}"
+                                                    Color="{AppThemeBinding Light={StaticResource DeleteText},
+                                                                            Dark={StaticResource DeleteTextDark}}" />
+                                            </SwipeItem.IconImageSource>
+                                        </SwipeItem>
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem
+                                            BackgroundColor="Green"
+                                            Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.NotifyLeader}"
+                                            CommandParameter="{Binding}"
+                                            Text="{Static resources:AppResources.Notify}">
+                                            <SwipeItem.IconImageSource>
+                                                <FontImageSource
+                                                    FontFamily="MaterialDesignIcons"
+                                                    Glyph="{x:Static icons:MaterialDesignIconFont.SendCircleOutline}"
+                                                    Color="{AppThemeBinding Light={StaticResource RequestText},
+                                                                            Dark={StaticResource RequestTextDark}}" />
+                                            </SwipeItem.IconImageSource>
+                                        </SwipeItem>
+                                        <SwipeItem
+                                            BackgroundColor="{AppThemeBinding Light={StaticResource RequestBackground},
+                                                                              Dark={StaticResource RequestBackgroundDark}}"
+                                            Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.RequestMeeting}"
+                                            CommandParameter="{Binding}"
+                                            Text="{Static resources:AppResources.Request}">
+                                            <SwipeItem.IconImageSource>
+                                                <FontImageSource
+                                                    FontFamily="MaterialDesignIcons"
+                                                    Glyph="{x:Static icons:MaterialDesignIconFont.CardAccountMailOutline}"
+                                                    Color="{AppThemeBinding Light={StaticResource RequestText},
+                                                                            Dark={StaticResource RequestTextDark}}" />
+                                            </SwipeItem.IconImageSource>
+                                        </SwipeItem>
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <Grid
+                                    BackgroundColor="{AppThemeBinding Light={StaticResource ItemBackground},
+                                                                      Dark={StaticResource ItemBackgroundDark}}"
+                                    ColumnDefinitions="Auto, *"
+                                    RowDefinitions="Auto, auto">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:LeadersViewModel}}, Path=LeaderTapped}"
+                                            CommandParameter="{Binding .}"
+                                            NumberOfTapsRequired="2" />
+                                    </Grid.GestureRecognizers>
+                                    <Image
+                                        HeightRequest="128"
+                                        Source="{Binding ImageUrl, Converter={StaticResource imageResourceCvt}}"
+                                        WidthRequest="128" />
+                                    <StackLayout Grid.Column="1">
+                                        <Label
+                                            Margin="0,10,0,20"
+                                            FontSize="18"
+                                            HorizontalOptions="CenterAndExpand"
+                                            Text="{Binding JobTitle}" />
+                                        <Label
+                                            FontSize="24"
+                                            HorizontalOptions="CenterAndExpand"
+                                            Text="{Binding Name}" />
+                                    </StackLayout>
+                                    <BoxView
+                                        Grid.Row="1"
+                                        Grid.ColumnSpan="2"
+                                        Margin="40,0,40,6"
+                                        BackgroundColor="{StaticResource Primary}"
+                                        HeightRequest="1"
+                                        VerticalOptions="End" />
+                                </Grid>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <Grid
+                            HorizontalOptions="CenterAndExpand"
+                            RowDefinitions="auto,auto"
+                            VerticalOptions="CenterAndExpand">
+                            <Image>
+                                <Image.Source>
+                                    <FontImageSource
+                                        FontFamily="MaterialDesignIcons"
+                                        Glyph="{x:Static icons:MaterialDesignIconFont.AccountCancelOutline}"
+                                        Size="256"
+                                        Color="Gray" />
+                                </Image.Source>
+                            </Image>
+                            <Label
+                                Grid.Row="1"
+                                FontAttributes="Bold"
+                                FontSize="Large"
+                                HorizontalTextAlignment="Center"
+                                Text="{Static resources:AppResources.NoLeaders}" />
+                        </Grid>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+            </RefreshView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
